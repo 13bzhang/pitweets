@@ -13,20 +13,26 @@ Use the instructions here: http://www.raspberrypi.org/documentation/remote-acces
 
 Use the instructions here: http://www.instructables.com/id/Raspberry-Pi-Web-Server/step9/Install-an-FTP-server/
 
-(3) Install `R` on you Raspberry Pi.
+(3) Install R on you Raspberry Pi.
 
 (3a) Update all files from the default state.
 
     sudo apt-get update
     sudo apt-get upgrade
 
-(3b) Install `R`
+(3b) Install R
 
     sudo apt-get install r-base
 
-(3c) Install `RCurl`, `rJava`, and `XML`
+(3c) Install RCurl, rJava, and XML
 
-    sudo aptitude install libcurl4-openssl-dev
-    sudo apt-get install r-cran-rjava
-    sudo apt-get install libxml2-dev
+    sudo aptitude install libcurl4-openssl-dev #RCurl
+    sudo apt-get install r-cran-rjava #rJava
+    sudo apt-get install libxml2-dev #XML
+
+(4) Open up R from the Command Line and install the necessary packages.
+
+    install.packages(c("rjson","RJSONIO","ROAuth","streamR","mailR"))
+
+
     
