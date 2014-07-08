@@ -50,7 +50,7 @@ Use the instructions here: http://www.instructables.com/id/Raspberry-Pi-Web-Serv
 
 Use the instructions here: http://www.prophoto.com/support/twitter-api-credentials/
 
-(8) Back in R, create an OAuth file using the following code.
+(8) Back in R, create an OAuth file using the following code. You will need your Twitter API consumer key and secret consumer key.
 
     library(ROAuth)
     library(streamR)
@@ -58,8 +58,8 @@ Use the instructions here: http://www.prophoto.com/support/twitter-api-credentia
     requestURL <- "https://api.twitter.com/oauth/request_token"
     accessURL <- "https://api.twitter.com/oauth/access_token"
     authURL <- "https://api.twitter.com/oauth/authorize"
-    consumerKey <- "vnGm03KIVHKCUEqwG9K1heTnd"
-    consumerSecret <- "1M5Inka8XifjGbkZYGsBTnHpsod4ba9DM0LVK03EW4MERVgd7F"
+    consumerKey <- "INSERT YOUR CONSUMER KEY"
+    consumerSecret <- "INSERT YOUR SECRET CONSUMER KEY"
     my_oauth <- OAuthFactory$new(consumerKey = consumerKey, consumerSecret = consumerSecret, 
                              requestURL = requestURL, accessURL = accessURL, authURL = authURL)
     my_oauth$handshake(cainfo = system.file("CurlSSL", "cacert.pem", package = "RCurl"))
@@ -67,6 +67,19 @@ Use the instructions here: http://www.prophoto.com/support/twitter-api-credentia
 
 ### Part C: Running your R code
 
+(9) Download the file `twitter_rp.R' and fill in the necessary information, such as working directory, email account, etc.
 
+(10) Save your `twitter_rp.R' and send it to your Raspberry Pi via your FTP client. Also send the supporting files to your Raspberry Pi via your FTP client. Put them all in the same folder. 
+
+(11) You can test your R code by pasting it into R. After you're ready to run the R code, quit R. Using the command line, navigate to the folder where you saved your R code and run:
+
+    nohup R CMD BATCH twitter_rp.R &
+    exit
+
+Check to see if a "Run1.JSON" file appeared in your folder and if it is growing in size. If yes, then your tweets collection is successful. You can exit out of SSH. 
+
+(12) To stop the tweets collection, type in the command line:
+     
+     killall R
 
     
