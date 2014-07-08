@@ -19,24 +19,26 @@ Use the instructions here: http://www.instructables.com/id/Raspberry-Pi-Web-Serv
 * FileZilla: https://filezilla-project.org/
 * Fugu: http://en.wikipedia.org/wiki/Fugu_(software)
 
-(3) Install R on you Raspberry Pi.
+(4) Test if you can access your Raspberry Pi via the FTP client you downloaded. Your server will be your IP address and your password will be your Raspberry Pi log-in password (the non-root one).
 
-(3a) Update all files from the default state.
+(5) Install R on you Raspberry Pi. If you have never used R before, here is some basic information: http://www.r-project.org/about.html
+
+(5a) Update all files from the default state.
 
     sudo apt-get update
     sudo apt-get upgrade
 
-(3b) Install R along with packages that need to be manually installed.
+(5b) Install R along with packages that need to be manually installed.
 
     sudo apt-get install r-base
 
-(3c) Install RCurl, rJava, and XML
+(5c) Install RCurl, rJava, and XML
 
     sudo aptitude install libcurl4-openssl-dev #RCurl
     sudo apt-get install r-cran-rjava #rJava
     sudo apt-get install libxml2-dev #XML
 
-(4) Open up R from the Command Line and install the necessary packages. Follow the directions R provides about choosing a CRAN respository. 
+(6) Open up R from the Command Line and install the necessary packages. Follow the directions R provides about choosing a CRAN respository. 
 
     install.packages(c("rjson","RJSONIO","ROAuth","streamR","mailR"))
 
