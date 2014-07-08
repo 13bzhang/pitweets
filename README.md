@@ -82,4 +82,5 @@ Check to see if a "Run1.JSON" file appeared in your folder and if it is growing 
 
     killall R
 
-    
+
+-- Written by Baobao Zhang (contributions from Andrew Bertoli)
