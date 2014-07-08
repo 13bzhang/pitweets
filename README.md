@@ -1,9 +1,11 @@
 pitweets
 ========
 
-**Raspberry Pi Twitter Collection Server**
+### Raspberry Pi Twitter Collection Server
 
 Directions for how to set up your Raspberry Pi to collect a random sample of streaming tweets and store them as JSON files. We assume that you have already set up your Raspberry Pi with Raspbian as your OS. 
+
+### Part A: Install the Necessary Software
 
 (1) Use SSH to gain remote access to your Raspberry Pi.
 
@@ -41,6 +43,29 @@ Use the instructions here: http://www.instructables.com/id/Raspberry-Pi-Web-Serv
 (6) Open up R from the Command Line and install the necessary packages. Follow the directions R provides about choosing a CRAN respository. 
 
     install.packages(c("rjson","RJSONIO","ROAuth","streamR","mailR"))
+
+### Part B: Setting up your Twitter API credentials
+
+(7) Go to Twitter Developers and set up an developer account to get your API access keys
+
+Use the instructions here: http://www.prophoto.com/support/twitter-api-credentials/
+
+(8) Back in R, create an OAuth file using the following code.
+
+    library(ROAuth)
+    library(streamR)
+    library(RJSONIO)
+    requestURL <- "https://api.twitter.com/oauth/request_token"
+    accessURL <- "https://api.twitter.com/oauth/access_token"
+    authURL <- "https://api.twitter.com/oauth/authorize"
+    consumerKey <- "vnGm03KIVHKCUEqwG9K1heTnd"
+    consumerSecret <- "1M5Inka8XifjGbkZYGsBTnHpsod4ba9DM0LVK03EW4MERVgd7F"
+    my_oauth <- OAuthFactory$new(consumerKey = consumerKey, consumerSecret = consumerSecret, 
+                             requestURL = requestURL, accessURL = accessURL, authURL = authURL)
+    my_oauth$handshake(cainfo = system.file("CurlSSL", "cacert.pem", package = "RCurl"))
+    save(my_oauth, file = "my_oauth.Rdata")
+
+### Part C: Running your R code
 
 
 
