@@ -13,6 +13,12 @@ Use the instructions here: http://www.raspberrypi.org/documentation/remote-acces
 
 Use the instructions here: http://www.instructables.com/id/Raspberry-Pi-Web-Server/step9/Install-an-FTP-server/
 
+(3) Download a FTP client. I recommend Cyberduck but you can use any of the following or your favorite.
+
+* Cyberbuck: http://cyberduck.io/
+* FileZilla: https://filezilla-project.org/
+* Fugu: http://en.wikipedia.org/wiki/Fugu_(software)
+
 (3) Install R on you Raspberry Pi.
 
 (3a) Update all files from the default state.
@@ -20,7 +26,7 @@ Use the instructions here: http://www.instructables.com/id/Raspberry-Pi-Web-Serv
     sudo apt-get update
     sudo apt-get upgrade
 
-(3b) Install R
+(3b) Install R along with packages that need to be manually installed.
 
     sudo apt-get install r-base
 
@@ -30,9 +36,10 @@ Use the instructions here: http://www.instructables.com/id/Raspberry-Pi-Web-Serv
     sudo apt-get install r-cran-rjava #rJava
     sudo apt-get install libxml2-dev #XML
 
-(4) Open up R from the Command Line and install the necessary packages.
+(4) Open up R from the Command Line and install the necessary packages. Follow the directions R provides about choosing a CRAN respository. 
 
     install.packages(c("rjson","RJSONIO","ROAuth","streamR","mailR"))
+
 
 
     
