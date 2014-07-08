@@ -79,7 +79,7 @@ Use the instructions here: http://www.prophoto.com/support/twitter-api-credentia
 Check to see if a "Run1.JSON" file appeared in your folder and if it is growing in size. If yes, then your tweets collection is successful. You can exit out of SSH. 
 
 (12) To stop the tweets collection, type in the command line:
-     
-     killall R
+
+    killall R
 
     
