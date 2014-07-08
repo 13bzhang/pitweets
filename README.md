@@ -69,7 +69,7 @@ Use the instructions here: http://www.prophoto.com/support/twitter-api-credentia
 
 (9) Download the file "twitter_rp.R" and fill in the necessary information, such as working directory, email account, etc.
 
-(10) Save your "twitter_rp.R" and send it to your Raspberry Pi via your FTP client. Also send the supporting files to your Raspberry Pi via your FTP client. Put them all in the same folder. 
+(10) Save your "twitter_rp.R" and send it to your Raspberry Pi via your FTP client. Also send the supporting files to your Raspberry Pi via your FTP client. Put them all in the same folder. Make sure your "my_oauth.Rdata" file is in that folder too. 
 
 (11) You can test your R code by pasting it into R. After you're ready to run the R code, quit R. Using the command line, navigate to the folder where you saved your R code and run:
 
