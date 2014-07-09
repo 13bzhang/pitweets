@@ -3,7 +3,7 @@ pitweets
 
 ### Raspberry Pi Tweets Collection Server
 
-Directions for how to set up your Raspberry Pi to collect a random sample of streaming tweets and store them as JSON files. We assume that you have already set up your Raspberry Pi with Raspbian as your OS. 
+Directions for how to set up your Raspberry Pi to collect a random sample of streaming tweets and store them as JSON files. We assume that you have already set up your Raspberry Pi with Raspbian as your OS and have set up internet as well. 
 
 ### Part A: Install the Necessary Software
 
