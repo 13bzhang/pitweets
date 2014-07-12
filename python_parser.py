@@ -26,7 +26,7 @@ tweets_city=[] # city name
 tweets_withheldc=[] # country where the stuff is withheld 
 tweets_withhelds=[] # scope of content withheld
 # Loop over all line
-f = open(filename, "r")
+f = open("/Users/baobaozhang/Box Sync/Run1.json")
 lines = f.readlines()
 
 for line in lines:
@@ -151,10 +151,14 @@ for field in headings:
         row.append(p.get(field, '').strip().encode("utf-8"))
         writer.writerow(row)
 file.close()
- 
+
+import unicodecsv
+from cStringIO import StringIO
+
+
 
 with open('/Users/baobaozhang/Downloads/bigtest.csv', 'wb') as f:
     writer = csv.writer(f)
-    writer.writerows(izip(tweets_text, tweets_id)).encode("utf-8")
+    writer.writerows(izip(tweets_text, tweets_id))
     
     , tweets_createdat, tweets_name, tweets_description, tweets_location, tweets_timezone, tweets_selflang, tweets_scount, tweets_place, tweets_language,tweets_coord1, tweets_coord2, tweets_ccode, tweets_country, tweets_city, tweets_withheldc, tweets_withhelds))
