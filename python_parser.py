@@ -1,6 +1,7 @@
 ##############################################
 # USE PYTHON 2 WITH IPYTHON
 
+# download IPython here: http://ipython.org/install.html
 # change file working directories
 
 import sys
@@ -150,15 +151,8 @@ for x in range(0,len(tweets_place)):
 
 # Export to CSV
 data = {'id':tweets_id, 'text':tweets_text, 'time':tweets_createdat, 'name':tweets_name, 'descript':tweets_description, 'location':tweets_location, 'timezone':tweets_timezone, 'selflang':tweets_selflang, 'scount':tweets_scount,'language':tweets_language,'c1':tweets_coord1, 'c2':tweets_coord2, 'ccode':tweets_ccode, 'country':tweets_country,'city':tweets_city,'withc':tweets_withheldc,'withs':tweets_withhelds}
-
+# make data frame
 frame=pandas.DataFrame(data)
-
+# export the file
 frame.to_csv('/Users/baobaozhang/Box Sync/Run1.csv', sep=',', encoding='utf-8')
 
-
-
-with open('/Users/baobaozhang/Downloads/bigtest.csv', 'wb') as f:
-    writer = csv.writer(f)
-    writer.writerows(izip(tweets_text, tweets_id))
-    
-    , tweets_createdat, tweets_name, tweets_description, tweets_location, tweets_timezone, tweets_selflang, tweets_scount, tweets_place, tweets_language,tweets_coord1, tweets_coord2, tweets_ccode, tweets_country, tweets_city, tweets_withheldc, tweets_withhelds))
