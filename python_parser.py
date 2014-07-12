@@ -8,6 +8,7 @@ tweets_text = [] # We will store the text of every tweet in this list
 tweets_id=[] # User ID
 tweets_createdat = [] # When the tweet was tweeted
 # USER INFO
+tweets_user=[]
 tweets_name=[] # Twitter username
 tweets_description=[] # description of Twitter account
 tweets_location = [] # Location of every tweet (free text field - not always accurate or given)
@@ -102,7 +103,7 @@ for x in range(0,len(tweets_user)):
 for x in range(0,len(tweets_user)):
         try:
                 tweets_timezone.append(tweets_user[x]['time_zone'])
-        except Exception, e:                try:
+        except Exception, e:
                 tweets_timezone.append('')
 
 for x in range(0,len(tweets_user)):
@@ -110,7 +111,6 @@ for x in range(0,len(tweets_user)):
                 tweets_scount.append(tweets_user[x]['statuses_count'])
         except Exception, e:
                 tweets_scount.append('')
-                
 # place stuff
 for x in range(0,len(tweets_place)):
         try:
@@ -141,6 +141,11 @@ for x in range(0,len(tweets_place)):
                 tweets_coord2.append(tweets_place[x]['bounding_box']['coordinates'][0][0][1])
         except Exception, e:
                 tweets_coord2.append('')                
+
+import pandas
+data = {'id':tweets_id, 'text':tweets_text, 'time':tweets_createdat, 'user':tweets_user, 'name':tweets_name, 'descript':tweets_description, 'location':tweets_location, 'timezone':tweets_timezone, 'selflang':tweets_selflang, 'scount':tweets_scount, 'place':tweets_place, 'language':tweets_language,'c1':tweets_coord1, 'c2':tweets_coord2, 'ccode':tweets_c}
+frame=pandas.DataFrame(data)
+
 
 headings = ['tweets_text','tweets_id']
 file = open('/Users/baobaozhang/Downloads/bigtest.csv', 'wb')
