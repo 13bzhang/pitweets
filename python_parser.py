@@ -1,7 +1,13 @@
+##############################################
+# USE PYTHON 2 WITH IPYTHON
+
+# change file working directories
+
 import sys
 import json
 import difflib
 import csv
+import pandas
 
 # variables to save
 tweets_text = [] # We will store the text of every tweet in this list
@@ -78,19 +84,19 @@ for x in range(0,len(tweets_user)):
 
 for x in range(0,len(tweets_user)):
         try:
-                tweets_name.append(tweets_user[x]['name']).encode('utf-8')
+                tweets_name.append(tweets_user[x]['name'])
         except Exception, e:
                 tweets_name.append('')
 
 for x in range(0,len(tweets_user)):
         try:
-                tweets_description.append(tweets_user[x]['description']).encode('utf-8')
+                tweets_description.append(tweets_user[x]['description'])
         except Exception, e:
                 tweets_description.append('')
 
 for x in range(0,len(tweets_user)):
         try:
-                tweets_location.append(tweets_user[x]['location']).encode('utf-8')
+                tweets_location.append(tweets_user[x]['location'])
         except Exception, e:
                 tweets_location.append('')
 
@@ -142,23 +148,12 @@ for x in range(0,len(tweets_place)):
         except Exception, e:
                 tweets_coord2.append('')                
 
-import pandas
-data = {'id':tweets_id, 'text':tweets_text, 'time':tweets_createdat, 'user':tweets_user, 'name':tweets_name, 'descript':tweets_description, 'location':tweets_location, 'timezone':tweets_timezone, 'selflang':tweets_selflang, 'scount':tweets_scount, 'place':tweets_place, 'language':tweets_language,'c1':tweets_coord1, 'c2':tweets_coord2, 'ccode':tweets_c}
+# Export to CSV
+data = {'id':tweets_id, 'text':tweets_text, 'time':tweets_createdat, 'name':tweets_name, 'descript':tweets_description, 'location':tweets_location, 'timezone':tweets_timezone, 'selflang':tweets_selflang, 'scount':tweets_scount,'language':tweets_language,'c1':tweets_coord1, 'c2':tweets_coord2, 'ccode':tweets_ccode, 'country':tweets_country,'city':tweets_city,'withc':tweets_withheldc,'withs':tweets_withhelds}
+
 frame=pandas.DataFrame(data)
 
-
-headings = ['tweets_text','tweets_id']
-file = open('/Users/baobaozhang/Downloads/bigtest.csv', 'wb')
-writer = csv.writer(file, delimiter = ',', quotechar = '"')
-writer.writerow(headings)
-row = [] 
-for field in headings:
-        row.append(p.get(field, '').strip().encode("utf-8"))
-        writer.writerow(row)
-file.close()
-
-import unicodecsv
-from cStringIO import StringIO
+frame.to_csv('/Users/baobaozhang/Box Sync/Run1.csv', sep=',', encoding='utf-8')
 
 
 
