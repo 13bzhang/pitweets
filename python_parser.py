@@ -1,7 +1,8 @@
 import sys
 import json
 import difflib
- 
+import csv
+
 # variables to save
 tweets_text = [] # We will store the text of every tweet in this list
 tweets_id=[] # User ID
@@ -18,10 +19,12 @@ tweets_place=[] # general array for place
 tweets_language = [] # Language
 tweets_coord1 = [] # Coordinates
 tweets_coord2 = [] # Coordinates
-tweets_country = [] # Country
+tweets_ccode = [] # Country code
+tweets_country = [] # Country name
+tweets_city=[] # city name
 # WITHHELD INFO
-tweets_withheld=[] # country where the stuff is withheld 
-
+tweets_withheldc=[] # country where the stuff is withheld 
+tweets_withhelds=[] # scope of content withheld
 # Loop over all line
 f = open(filename, "r")
 lines = f.readlines()
@@ -33,7 +36,7 @@ for line in lines:
                 if tweet.has_key("retweeted_status") or not tweet.has_key("text"):
                                 continue
                 # Fetch text from tweet
-                text = tweet["text"].lower()
+                text = tweet["text"].encode('utf-8')
                 # Ignore 'manual' retweets, i.e. messages starting with RT             
                 if text.find("rt ") > -1:
                         continue
@@ -46,6 +49,14 @@ for line in lines:
                         tweets_language.append(tweet['lang'])
                 except KeyError:
                         tweets_language.append('')
+                try:
+                        tweets_withheldc.append(tweet['withheld_in_countries'])
+                except KeyError:
+                        tweets_withheldc.append('')
+                try:
+                        tweets_withhelds.append(tweet['withheld_scope'])
+                except KeyError:
+                        tweets_withhelds.append('')                        
                 try:
                         tweets_user.append(tweet['user'])
                 except KeyError:
@@ -103,9 +114,21 @@ for x in range(0,len(tweets_user)):
 # place stuff
 for x in range(0,len(tweets_place)):
         try:
-                tweets_country.append(tweets_place[x]['country_code'])
+                tweets_country.append(tweets_place[x]['country'])
         except Exception, e:
                 tweets_country.append('')
+
+for x in range(0,len(tweets_place)):
+        try:
+                tweets_ccode.append(tweets_place[x]['country_code'])
+        except Exception, e:
+                tweets_ccode.append('')
+
+for x in range(0,len(tweets_place)):
+        try:
+                tweets_city.append(tweets_place[x]['full_name'])
+        except Exception, e:
+                tweets_city.append('')
 
 for x in range(0,len(tweets_place)):
         try:
@@ -119,8 +142,19 @@ for x in range(0,len(tweets_place)):
         except Exception, e:
                 tweets_coord2.append('')                
 
+headings = ['tweets_text','tweets_id']
+file = open('/Users/baobaozhang/Downloads/bigtest.csv', 'wb')
+writer = csv.writer(file, delimiter = ',', quotechar = '"')
+writer.writerow(headings)
+row = [] 
+for field in headings:
+        row.append(p.get(field, '').strip().encode("utf-8"))
+        writer.writerow(row)
+file.close()
+ 
 
-with open('/Users/baobaozhang/Downloads/test2.csv', 'wb') as f:
+with open('/Users/baobaozhang/Downloads/bigtest.csv', 'wb') as f:
     writer = csv.writer(f)
-    writer.writerows(izip(tweets_text, tweets_location, tweets_timezone))
-
+    writer.writerows(izip(tweets_text, tweets_id)).encode("utf-8")
+    
+    , tweets_createdat, tweets_name, tweets_description, tweets_location, tweets_timezone, tweets_selflang, tweets_scount, tweets_place, tweets_language,tweets_coord1, tweets_coord2, tweets_ccode, tweets_country, tweets_city, tweets_withheldc, tweets_withhelds))
