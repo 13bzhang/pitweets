@@ -11,6 +11,8 @@ tweets_name=[] # Twitter username
 tweets_description=[] # description of Twitter account
 tweets_location = [] # Location of every tweet (free text field - not always accurate or given)
 tweets_timezone = [] # Timezone name of every tweet
+tweets_selflang = [] # self reported language
+tweets_scount = [] # status count
 # PLACE VARIABLE
 tweets_place=[] # general array for place
 tweets_language = [] # Language
@@ -37,6 +39,14 @@ for line in lines:
                         continue
                 tweets_text.append( text )
                 try:
+                        tweets_createdat.append(tweet['created_at'])
+                except KeyError:
+                        tweets_createdat.append('')
+                try:
+                        tweets_language.append(tweet['lang'])
+                except KeyError:
+                        tweets_language.append('')
+                try:
                         tweets_user.append(tweet['user'])
                 except KeyError:
                         tweets_user.append('')
@@ -46,33 +56,51 @@ for line in lines:
                         tweets_place.append('')
         except ValueError:
                 pass                        
-                
-                try:
-                        tweets_location.append(tweet['user']['location']#.encode('utf-8'))
-                except KeyError:
-                        tweets_location.append('')
-                try:
-                        tweets_timezone.append(tweet['user']['time_zone'])
-                except KeyError:
-                        tweets_timezone.append('')       
-                try:
-                        tweets_language.append(tweet['user']['lang'])
-                except KeyError:
-                        tweets_language.append('')
-                try:
-                        tweets_place.append(tweet['place'])
-                except KeyError:
-                        tweets_place.append('')
-        except ValueError:
-                pass
+
 # extract the user stuff
 for x in range(0,len(tweets_user)):
         try:
-                tweets_country.append(tweets_user[x][''])
+                tweets_id.append(tweets_user[x]['id'])
         except Exception, e:
-                tweets_country.append('')
+                tweets_id.append('')
 
+for x in range(0,len(tweets_user)):
+        try:
+                tweets_name.append(tweets_user[x]['name']).encode('utf-8')
+        except Exception, e:
+                tweets_name.append('')
 
+for x in range(0,len(tweets_user)):
+        try:
+                tweets_description.append(tweets_user[x]['description']).encode('utf-8')
+        except Exception, e:
+                tweets_description.append('')
+
+for x in range(0,len(tweets_user)):
+        try:
+                tweets_location.append(tweets_user[x]['location']).encode('utf-8')
+        except Exception, e:
+                tweets_location.append('')
+
+for x in range(0,len(tweets_user)):
+        try:
+                tweets_selflang.append(tweets_user[x]['lang'])
+        except Exception, e:
+                tweets_selflang.append('')
+
+for x in range(0,len(tweets_user)):
+        try:
+                tweets_timezone.append(tweets_user[x]['time_zone'])
+        except Exception, e:                try:
+                tweets_timezone.append('')
+
+for x in range(0,len(tweets_user)):
+        try:
+                tweets_scount.append(tweets_user[x]['statuses_count'])
+        except Exception, e:
+                tweets_scount.append('')
+                
+# place stuff
 for x in range(0,len(tweets_place)):
         try:
                 tweets_country.append(tweets_place[x]['country_code'])
