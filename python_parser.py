@@ -41,14 +41,17 @@ for line in lines:
         try:
                 tweet = json.loads(line)
                 # Ignore retweets!
-                if tweet.has_key("retweeted_status") or not tweet.has_key("text"):
-                                continue
+                #if tweet.has_key("retweeted_status") or not tweet.has_key("text"):
+                #                continue
                 # Fetch text from tweet
-                text = tweet["text"].encode('utf-8')
+                #text = tweet["text"].encode('utf-8')
                 # Ignore 'manual' retweets, i.e. messages starting with RT             
-                if text.find("rt ") > -1:
-                        continue
-                tweets_text.append( text )
+                #if text.find("rt ") > -1:
+                #        continue
+                try:
+                        tweets_text.append(tweet['text'])
+                except KeyError:
+                        tweets_text.append('')                        
                 try:
                         tweets_createdat.append(tweet['created_at'])
                 except KeyError:
