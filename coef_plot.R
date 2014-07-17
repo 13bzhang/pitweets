@@ -4,10 +4,11 @@ names(cd) <- c("mean","se","measure")
 cd$mean <- c(4,2,3)
 cd$se <- c(2,1,2)
 cd$measure <- as.factor(c("C1","C2","C3"))
+cd$revmeasure <- factor(cd$measure, levels=rev(levels(factor(cd$measure))))
 # make the graph
 library(ggplot2)
 f <- ggplot(cd, 
-            aes(x=mean,y=measure,shape=measure,color=measure))
+            aes(x=mean,y=revmeasure,shape=measure,color=measure))
 f <- f+geom_vline(xintercept=0, linetype="longdash")+
   geom_errorbarh(aes(xmax =  mean + 2.576*se, #99 confidence interval
                      xmin = mean - 2.576*se),
@@ -18,5 +19,7 @@ f <- f+geom_vline(xintercept=0, linetype="longdash")+
   geom_point(stat="identity",size=3.5,fill="white")+
   scale_color_manual(name="Experiment Type",
                      values=c("firebrick3","forestgreen","dodgerblue3"))+
-  scale_shape_manual(name="Vingette Type",values=c(21,22,23))+
+  scale_shape_manual(name="Experiment Type",values=c(21,22,23))+
   xlab("Coeffient")+ylab("")
+
+
